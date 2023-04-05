@@ -1,26 +1,27 @@
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
-const userSchema = new Schema(
+const AbsenceSchema = new Schema(
     {
-        email: {
+        matiere: {
             type: String,
             required: true
         },
-        password: {
+        date: {
+            type: String,
+            required: true
+        },
+        justificatif: {
             type: String,
             required: true
         },
         iduser : {
             type: String,
         },
-        status: {
-            type: Boolean,
-        }
     },
     {
         timestamps: true
     }
 );
 
-export default model('User', userSchema);
+export default model('Absences', AbsenceSchema);

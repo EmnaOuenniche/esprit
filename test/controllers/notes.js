@@ -45,7 +45,3 @@ export async function createNote(req,res) {
           res.status(301).send("erreur");
         }
       }
-	  
-
-	
-

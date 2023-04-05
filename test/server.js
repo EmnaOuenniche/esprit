@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 
 import userRoutes from './routes/use.js';
 import NotesRoutes from './routes/notes.js';
+import ClasseRoutes from './routes/classe.js';
+import AbsenceRoutes from './routes/absence.js';
+import EventRoutes from './routes/evenement.js';
+
 const app = express();
 const port = process.env.PORT || 5000;
 const databaseName = 'espritt';
@@ -24,6 +28,12 @@ app.use(express.json());
 
 app.use('/user', userRoutes);
 app.use('/notes', NotesRoutes);
+app.use('/classe', ClasseRoutes);
+app.use('/absence', AbsenceRoutes);
+app.use('/event', EventRoutes);
+
+
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });

@@ -1,7 +1,7 @@
 
 import express from 'express';
 
-import { login,signup,forgot , patchOnce} from '../controllers/use.js';
+import { login,signup,forgot , patchOnce,getUserEmail} from '../controllers/use.js';
   
 const router = express.Router();
 
@@ -17,4 +17,7 @@ router
   router 
   .route('/patchOnce')
   .post(patchOnce)
+  router 
+  .route('/getUserEmail')
+  .post(getUserEmail)
   export default router;

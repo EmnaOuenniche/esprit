@@ -1,26 +1,24 @@
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
-const userSchema = new Schema(
+const EventSchema = new Schema(
     {
-        email: {
+        date: {
             type: String,
             required: true
         },
-        password: {
+        description: {
             type: String,
             required: true
         },
         iduser : {
             type: String,
         },
-        status: {
-            type: Boolean,
-        }
     },
     {
         timestamps: true
     }
 );
 
-export default model('User', userSchema);
+const Evenement= mongoose.model("Evenement",EventSchema);
+export{Evenement};

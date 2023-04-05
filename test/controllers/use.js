@@ -21,7 +21,7 @@ var saltRounds = 10;
 export async function signup(req, res) {
 	const  hashedPwd = await bcrypt.hash(req.body.password, saltRounds);
 	try{
-        const  user = await User.findOne({ login : req.body.login })
+        const  user = await User.findOne({ email : req.body.email })
         if(user)
         {
             return res.status(500).json(null)
@@ -29,7 +29,7 @@ export async function signup(req, res) {
         else
         {
             const user = new User({
-                login: req.body.login,
+                email: req.body.email,
                 password: hashedPwd
             })
             const newUser = await user.save()
@@ -53,8 +53,11 @@ export async function signup(req, res) {
 	  });*/
 	}
 
+
+
+
 	export async function login(req, res) {
-		const user = await User.findOne({ login: req.body.login });
+		const user = await User.findOne({ email: req.body.email });
 		if (user) {
 		  // check user password with hashed password stored in the database
 		  const validPassword = await bcrypt.compare(req.body.password, user.password);
@@ -67,10 +70,19 @@ export async function signup(req, res) {
 	  } else {
 		res.status(401).json({ error: "User does not exist" });
 	  }
-	  };
+};
+
+export async function getUserEmail(req, res){
+	//const iduser = req.body.iduser
+
+	const user = await User.findOne({ email: req.body.email });
+	
+	//const user = await User.findOne({ iduser : iduser });
+	res.status(200).send(user);
+}
 	export function patchOnce(req, res) {
 		User
-		.findOneAndUpdate({ "login": req.body.login }, { "password": req.body.password})
+		.findOneAndUpdate({ "email": req.body.email }, { "password": req.body.password})
 		.then(doc => {
 			res.status(200).json(doc);
 		})
@@ -87,7 +99,7 @@ export async function signup(req, res) {
 				});
 			},
 			function (token, done) {
-				User.findOne({ login: req.body.login }, function (err, user) {
+				User.findOne({ email: req.body.email }, function (err, user) {
 					if (!user) {
 						console.log('No account with that email address exists.')
 					}
@@ -104,14 +116,14 @@ export async function signup(req, res) {
 				let smtpTransport= nodemailer.createTransport({
 					service: 'gmail',
 					auth: {
-					  user: 'khitem.mathlouthi@esprit.tn',
+					  user: 'emna.ouenniche@esprit.tn',
 					  pass: 'loicfhwbjlkevfqg'
 					}
 				
 				});
 				var mailOptions = {
-					to: user.login,
-					from: 'khitem.mathlouthi@esprit.tn',
+					to: user.email,
+					from: 'emna.ouenniche@esprit.tn',
 					subject: 'Password Reset',
 					text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
 						'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -128,6 +140,8 @@ export async function signup(req, res) {
 		], function (err) {
 			if (err) return next(err);
 		});
+
+		
 	};
 
 
