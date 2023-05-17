@@ -9,7 +9,7 @@ router
   .post(createAbs);
   router
   .route('/AllAbs')
-  .post(getAllAbs);
+  .get(getAllAbs);
   router
   .route('/AbsById')
   .post(getAbsById);

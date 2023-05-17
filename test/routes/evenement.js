@@ -1,24 +1,20 @@
 import express from 'express';
+import multer from "../middlewares/multer-config.js";
 
-import {createEv, getAllEv,getEvById, updateEv, getUserEv} from '../controllers/evenement.js';
+//import {createEvWithImageUpload, getAllEv,getEvById, updateEvWithImageUpload, getUserEv} from '../controllers/evenement.js';
+import { createEv, getAllEv } from '../controllers/evenement.js';
 
-//import { createEv,getAllEv,getEvById , updateEv,getUserEv} from '../controllers/event';
 const router = express.Router();
 
 router
-  .route('/createEv')
-  .post(createEv);
-  router
-  .route('/getAllEv')
-  .get(getAllEv);
-  router
-  .route('/getEvById')
-  .post(getEvById);
-  router
-  .route('/getUserEv')
-  .post(getUserEv);
-  router 
-  .route('/updateEv')
-  .post(updateEv)
+.route("/createEv").post(multer("image", 512 * 1024) , createEv);
+
+
+//router.route('/createEv').post(createEvWithImageUpload);
+//router.route('/createEv').post(createEv);
+router.route('/getAllEv').get(getAllEv);
+//router.route('/getEvById').get(getEvById);
+//router.route('/getUserEv').get(getUserEv);
+//router.route('/updateEv').post(updateEvWithImageUpload)
 
   export default router;

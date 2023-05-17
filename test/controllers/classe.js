@@ -1,5 +1,5 @@
 import Classes from "../models/classe.js";
- 
+ /*
 export async function createClasse(req,res) {
     const { clas, iduser } = req.body;
     const classe = new Classes();
@@ -7,7 +7,19 @@ export async function createClasse(req,res) {
     classe.iduser = iduser
     await classe.save();
     res.status(201).send(classe);
-    }
+    }*/
+
+     
+export async function createClasse(req,res) {
+  const { clas, iduser, name } = req.body;
+  const classe = new Classes();
+  classe.clas = clas
+  classe.name = name
+  classe.iduser = iduser
+  //console.log(req.body)
+  await classe.save();
+  res.status(201).send(classe);
+  }
 
 
     export async function getAllClasses(req, res){

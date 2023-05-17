@@ -13,7 +13,7 @@ export async function createNote(req,res) {
     }
     export async function getAllNotes(req, res){
         var notes = await Notes.find();
-        res.status(200).send({ notes });
+        res.status(200).send( notes );
       }
     export async function getUserNotes(req, res){
         const iduser = req.body.iduser

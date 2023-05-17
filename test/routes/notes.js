@@ -9,7 +9,7 @@ router
   .post(createNote);
   router
   .route('/AllNotes')
-  .post(getAllNotes);
+  .get(getAllNotes);
   router
   .route('/NotesById')
   .post(getNotesById);

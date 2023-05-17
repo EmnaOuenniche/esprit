@@ -16,7 +16,13 @@ const userSchema = new Schema(
         },
         status: {
             type: Boolean,
-        }
+        },
+        
+    otp: {
+
+        type: Number,
+        default: 0
+      }
     },
     {
         timestamps: true
